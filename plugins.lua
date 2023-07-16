@@ -1,7 +1,14 @@
 local plugins = {
   {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "VeryLazy",
+    config = function(_, opts)
+      require("treesitter-context").setup(opts)
+    end,
+  },
+  {
     "jose-elias-alvarez/null-ls.nvim",
-    ft = { "pyhton", "sh", "bash" },
+    ft = { "pyhton", "sh", "bash", "c", "cpp" },
     opts = function ()
       return require "custom.configs.null-ls"
     end,
@@ -17,25 +24,6 @@ local plugins = {
       },
     },
   },
-  -- { "mfussenegger/nvim-dap" },
-  -- {
-  --   "rcarriga/nvim-dap-ui",
-  --   dependencies = "mfussenegger/nvim-dap",
-  --   config = function ()
-  --     local dap = require("dap")
-  --     local dapui = require("dapui")
-  --     dapui.setup()
-  --     dap.listeners.after.event_initialized["dapui_config"] = function()
-  --       dapui.open()
-  --     end
-  --     dap.listeners.before.event_terminated["dapui_config"] = function()
-  --       dapui.close()
-  --     end
-  --     dap.listeners.before.event_exited["dapui_config"] = function()
-  --       dapui.close()
-  --     end
-  --   end
-  -- },
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -75,5 +63,12 @@ local plugins = {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
+  {
+    "nmac427/guess-indent.nvim",
+    lazy = false,
+    config = function (_, opts)
+      require("guess-indent").setup(opts)
+    end
+  }
 }
 return plugins
