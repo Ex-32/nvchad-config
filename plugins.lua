@@ -17,10 +17,16 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "pyright",
-        "shellcheck",
+        "clangd",
+        "eslint-lsp",
+        "lua-language-server",
         "mypy",
+        "prettier",
+        "pyright",
         "ruff",
+        "shellcheck",
+        "texlab",
+        "typescript-language-server",
       },
     },
   },
@@ -30,6 +36,10 @@ local plugins = {
       require "plugins.configs.lspconfig"
       require "custom.configs.lspconfig"
     end
+  },
+  {
+    "mrcjkb/haskell-tools.nvim",
+    ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
   },
   {
     "simrat39/rust-tools.nvim",
@@ -69,6 +79,13 @@ local plugins = {
     config = function (_, opts)
       require("guess-indent").setup(opts)
     end
+  },
+  {
+    "andweeb/presence.nvim",
+    event = "VeryLazy",
+    opts = {
+      neovim_image_text = "A hyperextensible Vim-based text editor",
+    }
   }
 }
 return plugins
